@@ -95,3 +95,35 @@ items.forEach(function (item) {
 
 // // Add the contents of options[0] to #foo:
 // document.getElementById('foo').appendChild(makeUL(options[0]));*/
+
+function makeRequest(location) {
+
+    return new Promise((resolve, reject) => {
+        console.log(`Making Requerst to ${location}`);
+        if(location === 'Google') {
+            resolve('Google says Hi');
+        } else {
+             reject('Can Only make request to Google');
+        }
+    })
+}
+
+function processRequest(response) {
+    return new Promise((resolve, request) => {
+        console.log('Processing request')
+        resolve(`Extra Info for + ${response}`);
+    })
+}
+
+ function doWork() {
+    try{
+        const resp =  makeRequest('google');
+        console.log('Response Received from make Request: ' + JSON.stringify(resp));
+        const processedInfo =  processRequest(resp);
+        console.log('response Processed: ' + JSON.stringify(processedInfo));
+    } catch(err){
+        console.log(err);
+    }
+}
+
+doWork();
